@@ -18,7 +18,7 @@ public class HelloServiceImpl extends AppServiceGrpc.AppServiceImplBase {
         System.out.println(request);
         AppServiceOuterClass.AppResponse response = AppServiceOuterClass.AppResponse
                 .newBuilder()
-                .setHello("Hello server " + request.getName())
+                .setHello("Hello server " + request.getName() + " Arr" + request.getArrList())
                 .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
