@@ -16,7 +16,7 @@ public class HelloServiceImpl extends AppServiceGrpc.AppServiceImplBase {
     public void hello(AppServiceOuterClass.AppRequest request, StreamObserver<AppServiceOuterClass.AppResponse> responseObserver) {
 
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
 
             try {
                 Thread.sleep(100);
@@ -27,7 +27,7 @@ public class HelloServiceImpl extends AppServiceGrpc.AppServiceImplBase {
             System.out.println(request);
             AppServiceOuterClass.AppResponse response = AppServiceOuterClass.AppResponse
                     .newBuilder()
-                    .setHello("Hello server " + request.getName() + " Arr" + request.getArrList())
+                    .setHello(i + " Hello server " + request.getName() + " Arr" + request.getArrList())
                     .build();
             responseObserver.onNext(response);
         }
