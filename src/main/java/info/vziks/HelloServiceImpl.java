@@ -1,7 +1,8 @@
 package info.vziks;
 
+import info.vziks.grpc.AppRequest;
+import info.vziks.grpc.AppResponse;
 import info.vziks.grpc.AppServiceGrpc;
-import info.vziks.grpc.AppServiceOuterClass;
 import io.grpc.stub.StreamObserver;
 
 /**
@@ -13,7 +14,7 @@ import io.grpc.stub.StreamObserver;
 public class HelloServiceImpl extends AppServiceGrpc.AppServiceImplBase {
 
     @Override
-    public void hello(AppServiceOuterClass.AppRequest request, StreamObserver<AppServiceOuterClass.AppResponse> responseObserver) {
+    public void hello(AppRequest request, StreamObserver<AppResponse> responseObserver) {
 
 
         for (int i = 0; i < 100; i++) {
@@ -25,7 +26,7 @@ public class HelloServiceImpl extends AppServiceGrpc.AppServiceImplBase {
             }
 
             System.out.println(request);
-            AppServiceOuterClass.AppResponse response = AppServiceOuterClass.AppResponse
+            AppResponse response = AppResponse
                     .newBuilder()
                     .setHello(i + " Hello server " + request.getName() + " Arr" + request.getArrList())
                     .build();
